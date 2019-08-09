@@ -1,0 +1,118 @@
+{% extends 'base.html' %} {% load staticfiles %} {% block contents %}
+<section class="section_padding_top_100 section_padding_bottom_100 height-100">
+    <div class='head-contents'>
+        <div class="container">
+            <div class='row'>
+                <!--회원 정보 시작-->
+                <div class="col-md-3">
+                        <div class='profile'>
+                            {% if user.is_authenticated %}
+                            <img src="{% static 'board/img/user.png'%}" alt="오류" class="img-circle"> <br>
+                            {{user.username}} 님 <br>
+                            <a class="info" href="{% url 'login' %}">내 정보</a>
+                            <a class="info" href="{% url 'logout' %}">로그아웃</a>
+                            {% else %}
+                            <img src="{% static 'board/img/user.png'%}" alt="오류" class="img-circle"> <br>
+                            
+                            <img src="" alt="" class="img-circle"> <br>
+                            <a class="info" href="{% url 'login' %}">로그인</a>
+                            <a class="info" href="{% url 'signup' %}">회원가입</a>
+                            {% endif %} 
+                        </div>
+                    </div>
+                <!--회원 정보 종료-->
+
+                <!--검색창 시작-->
+                <div class=" col-md-9">
+                    <div class="search-input">
+                        <input type="text" class="search" value="검색">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <!--검색창 종료-->
+            </div>
+            <!--row-->
+        </div>
+        <!--container-->
+    </div>
+
+        <div class="container">
+            <div class='row'>
+                <!-- 사이트 메뉴 시작 -->
+                    <div class="col-md-3">
+                            <div class="sidebar-wrapper">
+                                
+                                <a href="{% url 'home' %}" class='clickbox btn-primary'>
+                                    <div>
+                                        <img class="image" src="{% static 'board/img/politics.png'%}">정치
+                                    </div>
+                                </a>
+                                <a href="{% url 'home' %}" class='clickbox btn-primary'>
+                                        <div>
+                                            <img class="image" src="{% static 'board/img/science.png'%}">과학
+                                        </div>
+                                </a>
+                                <a href="{% url 'home' %}" class='clickbox btn-primary'>
+                                        <div>
+                                            <img class="image" src="{% static 'board/img/social.png'%}">사회
+                                        </div>
+                                </a>
+                                <a href="{% url 'home' %}" class='clickbox btn-primary'>
+                                        <div>
+                                            <img class="image" src="{% static 'board/img/economy.png'%}">경제
+                                        </div>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- 사이드 메뉴 끝 -->
+                <!--콘텐츠 시작-->
+                <div class='col-md-9'>
+                    <div class="content-detail">
+                        <div class='card-columns'>
+                            {% for blog in posts %}
+                                <div class="col-md-12">
+                                    <div class='card shadow-sm'>
+                                        <img src="{{ blog.image.url }}" width="100%" />
+                                        <span class="card-body">
+                                            <p class="card-text">제목:{{ blog.title }}</p>
+                                            <p class="card-text">내용:{{ blog.summary | safe }}</p>
+                                            <span class="d-flex justify-content-between align-items-center">
+                                                <span class="btn-group">
+                                                    <a class="btn btn-sm btn-outline-secondary ml-3" href="{% url 'detail' blog.id %}">View</a>
+                                                </span>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <!-- 콘텐츠 끝 -->
+                        <!--<div class="container">
+                            {% if posts.has_previous %}
+                            <a href="?page=1" class="btn btn-dark">First</a>
+                            <a href="{% url 'home'%}" class="btn btn-primary">Previous</a>
+                            {% endif %}
+
+                            <span>{{ posts.number }}</span>
+                            <span>of</span>
+                            <span>{{ posts.paginator.num_pages }}</span>
+
+                            {% if posts.has_next %}
+                            <a
+                                href="?page={{ posts.next_page_number }}"
+                                class="btn btn-primary">Next</a>
+                            <a
+                                href="?page={{ posts.paginator.num_pages }}"
+                                class="btn btn-dark"
+                                >Last</a>
+                            {% endif %}
+                        </div>-->
+                    </div>
+                </div>
+                <!-- col-9 끝 -->
+            </div>  
+        </div>
+    </div>
+</section>
+
+{% endblock %}

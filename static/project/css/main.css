@@ -1,0 +1,245 @@
+.display_table{
+    display: table;
+}
+
+.logo {
+    padding-right: 30px;
+}
+
+.logo > a > h3 {
+    font-weight: 600;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.35);
+    margin: 15px;
+}
+
+.logo > a:hover > h3{
+    font-weight: 600;
+    color: #e8dff1;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.35);
+}
+
+.logo > a:hover {
+    text-decoration:none !important;
+}
+
+.logo, .header_mainmenu{
+    float: left;
+    display: inline-block;
+}
+
+header{
+    background-color: #a98ec5; 
+}
+
+footer{
+    background-color: #6b91e1;
+    height: 56px;
+    width: 100%;
+}
+
+footer p{
+    color: white;
+    font-size: 12px;
+}
+
+footer p a, footer p a:hover{
+    color: white;
+    text-decoration: underline;
+}
+
+ul{
+    list-style:none;
+    padding-left: 0;
+    table-layout: fixed;
+    width: 100%;
+    }
+
+.container-fluid{
+    height: 56px;
+    padding: 0px 80px;
+}
+
+.header_right_buttons{
+    white-space: nowrap;
+    float: right;
+    display: table-cell;
+    vertical-align: middle;
+    margin-top: 15px;
+}
+
+.header_nav {
+    border-bottom: 2px solid white;
+    position: fixed;
+    width: 100%;
+    height: 56px;
+}
+
+.row {
+    display: table;
+}
+
+.header_right_buttons>ul>li>a {
+    color: #ffffff;
+    text-decoration:none;
+}
+
+.sf-menu, .header_right_buttons>ul>li{
+    display: table-cell;
+}
+
+.mainmenu_wrapper{
+    border:none;
+    border:0px;
+    margin:0px;
+    padding:0px;
+    font-size:14px;
+    font-weight:bold;
+    margin-top: 18px;
+    }
+    
+.mainmenu_wrapper ul{
+    /* background: rgb(109,109,109); */
+    height:56px;
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+.mainmenu_wrapper li{
+    float:left;
+    padding:0px;
+}
+
+.header_right_buttons ul li a{
+    margin-left: 25px; 
+}
+
+.header_right_buttons ul li a:hover{
+    margin-left: 25px; 
+    color: #e8dff1;
+}
+
+.mainmenu_wrapper li a{
+    color:white;
+    display:block;
+    padding: 0;
+    margin-right: 25px;
+    text-align:center;
+    text-decoration:none;
+    width: 42px;
+    font-weight: 300;
+}
+
+.mainmenu_wrapper li a:hover{
+    text-decoration:none;
+}
+
+.sf-menu > li > a:after {
+    content: "";
+    position: absolute;
+    display: block;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: white;
+    -webkit-transform: translateY(10px) scaleX(0);
+    transform: translateY(10px) scaleX(0);
+    opacity: 0;
+    transition: all 0.2s ease 0s;
+}
+
+.bordered_items .sf-menu > li > a:after {
+    display: none;
+}
+
+.sf-menu > li > a:hover:after,
+.sf-menu > li.active > a:after,
+.sf-menu > li.sfHover > a:after {
+    -webkit-transform: translateY(0) scaleX(1);
+    transform: translateY(0) scaleX(1);
+    opacity: 1;
+}
+
+
+
+.mainmenu_wrapper ul li:hover a{
+    background: transparent;
+    color: #e8dff1;
+}
+
+.mainmenu_wrapper li ul{
+    background: white;
+    display:none; /* 평상시에는 드랍메뉴가 안보이게 하기 */
+    height:auto;
+    padding:0px;
+    margin:0px;
+    border:0px;
+    position:absolute;
+    width:200px;
+    z-index:200;
+    /*top:1em;
+    /*left:0;*/
+}
+
+.mainmenu_wrapper li ul a{
+    color: #000;
+}
+
+.mainmenu_wrapper li:hover ul{
+    display:block; /* 마우스 커서 올리면 드랍메뉴 보이게 하기 */
+}
+
+.mainmenu_wrapper li li {
+    /* background: rgb(109,109,109); */
+    display:block;
+    float:none;
+    margin:0px;
+    padding:0px;
+    width:200px;
+}
+
+.mainmenu_wrapper li:hover li a{
+    background:none;
+}
+
+.mainmenu_wrapper li ul a{
+    display:block;
+    font-size:12px;
+    font-style:normal;
+    margin:0px;
+    padding:0px 10px 0px 15px;
+    text-align:left;
+}
+
+.mainmenu_wrapper li ul a:hover, .mainmenu_wrapper li ul li:hover a{
+    /* background: rgb(71,71,71); */
+    border:0px;
+    color:#ffffff;
+    text-decoration:none;
+}
+
+.mainmenu_wrapper p{
+    clear:left;
+}
+
+.nanumsquare {
+    font-family: 'NanumSquare', sans-serif !important; 
+}
+
+.footer-left {
+    display: inline-block;
+}
+
+.footer-right {
+    display: inline-block;
+    float: right;
+}
+
+.margintop-15{
+    margin-top: 15px;   
+}
+
+.container-footer{
+    position: sticky;
+}

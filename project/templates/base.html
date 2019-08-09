@@ -1,0 +1,115 @@
+
+{% comment %} {% providers_media_js %} {% endcomment %}
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>잡학다식</title>
+
+    <!-- Bootstrap, Jquery, popper css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- font css -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
+    
+    <script src="https://kit.fontawesome.com/51369bc7c3.js"></script>
+
+    <!-- jobhakdasik css -->
+
+    <link rel="stylesheet" href="{% static 'board/css/main.css' %}">
+
+
+  </head>
+
+
+  <body>
+      
+        
+ <div class="body">
+    <header class='header_nav nanumsquare'>
+      <div class="container-fluid">
+        <div class="logo">
+          <a href="{% url 'home' %}">
+            <!-- <img src="images/logo.jpg" alt="잡학다식"> -->
+            <h3>잡학다식</h3>
+          </a>
+        </div>
+
+        <div class="header_mainmenu text-center">
+          <nav class="mainmenu_wrapper">
+            <ul class="mainmenu nav sf-menu">
+              <li class="active">
+                <a href="">회원</a>
+              </li>
+
+              <!--menu 1-->
+              <li >
+                <a href="">공지</a>
+              </li>
+
+              <!-- menu 2 -->
+              <li>
+                <a href="{% url 'post_home' %}">지식</a>
+              </li>
+
+              <!--menu 3-->
+              <li>
+                <a href="">토론</a>
+              </li>
+            
+            </ul>
+          </nav>
+          <!-- eof main nav -->
+          <!-- header toggler -->
+        </div>
+
+        <div class="text-right header_right_buttons">
+          <ul>
+            {% if user.is_authenticated %}
+            <li>
+              <a href="{% url 'logout' %}" class='logout'>로그아웃</a>
+            </li>
+            <li>
+              <a href="#" class='username'>{{user.username}}님</a>
+            </li>
+            {% else %}
+            <li>
+              <a href="{% url 'signup' %}" class='sign-up'>회원가입</a>
+            </li>
+            <li>
+              <a href="{% url 'login' %}" class='login'>로그인</a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+
+      </div>
+    </header>
+      <!--네비 밑에 깔아서 겹치지 않도록 하는 역할-->
+      <div class="background-top"></div>
+
+
+
+		
+                  {% block contents %}
+
+                  {% endblock %}
+        <div class="container-footer">
+        <footer class="nanumsquare">
+            <div class="container-fluid container">
+              <div class="paddingtop-15">
+                <p class='footer-left'>© SAHMYOOK UNIVERSITY LIKELION 7TH 잡학다식</p>
+                <p class='footer-right'>FAMILYSITE <a href="http://sahmyook.likelion.org/">삼육멋사</a> <a href="https://likelion.net/">멋쟁이사자처럼</a></p>
+              </div>
+            </div>
+        </footer>
+      </div>
+</body>
+</html>
