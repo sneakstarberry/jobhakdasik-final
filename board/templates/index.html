@@ -7,7 +7,9 @@
                 <div class="col-md-3">
                     <div class='profile'>
                         {% if user.is_authenticated %}
-                        <img src="{% static 'board/img/user.png'%}" alt="오류" class="img-circle"> <br>
+             
+                        <img src="{{assets.image.url}}" alt="프로필" class="img-circle"> <br>
+                       
                         {{user.username}} 님 <br>
                         <a class="info" href="{% url 'login' %}">내 정보</a>
                         <a class="info" href="{% url 'logout' %}">로그아웃</a>

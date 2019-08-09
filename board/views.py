@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-from .models import Blog, Comment
+from .models import Blog, Comment, Profile
 from django.core.paginator import Paginator
 from .form import NewBlog, CommentForm
 from django.contrib.auth.models import User
@@ -16,7 +16,9 @@ def home(request):
     page = request.GET.get('page')
     #request된 페이지를 얻어온 뒤 return 해 준다.
     posts = paginator.get_page(page)
-    return render(request, 'index.html', {'blogs':blogs, 'posts':posts})
+
+    assets =  get_object_or_404(Profile , user=request.user)
+    return render(request, 'index.html', {'blogs':blogs, 'posts':posts, 'assets' : assets})
 
 # 홈페이지와는 다른 게시판 함수
 def post_home(request):

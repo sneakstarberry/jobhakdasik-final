@@ -49,3 +49,8 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.text
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete = models.CASCADE)
+    image = models.ImageField(upload_to='images/')
+    upload_date = models.DateTimeField('Date published', auto_now=True)
