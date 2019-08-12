@@ -120,7 +120,7 @@ def search(request):
         variable_column = request.GET.get('search_filter')
         search_type = 'contains'
         filter = variable_column + '__' + search_type
-        posts = Blog.objects.filter(**{ filter: request.GET.get('q') }).order_by('-pub_date') 
+        posts = Blog.objects.filter(**{ filter: request.GET.get('q') }).order_by('-pub_date')
         return render(request , 'result.html' , {'result' : posts , 'query' : que})
     else:
         return redirect('home') 
@@ -142,3 +142,40 @@ def favorite(request,blog_id):
         blog.favorite.add(request.user)
     blog.save()
     return redirect('detail', blog_id)
+
+        # 카테고리
+def category_notice(request):
+    blogs = Blog.objects.all().filter(category='공지').order_by('-created_date')
+    return render(request, 'index.html', {'posts':blogs})
+
+    queryset = queryset.order_by('field1') # 지정 필드 오름차순 요청
+
+def category_politics(request):
+    blogs = Blog.objects.all().filter(category='정치').order_by('-created_date')
+    return render(request, 'index.html', {'posts':blogs})
+
+    queryset = queryset.order_by('field1') # 지정 필드 오름차순 요청
+
+def category_social(request):
+    blogs = Blog.objects.all().filter(category='사회').order_by('-created_date')
+    return render(request, 'index.html', {'posts':blogs})
+
+    queryset = queryset.order_by('field1') # 지정 필드 오름차순 요청
+
+def category_economy(request):
+    blogs = Blog.objects.all().filter(category='경제').order_by('-created_date')
+    return render(request, 'index.html', {'posts':blogs})
+
+    queryset = queryset.order_by('field1') # 지정 필드 오름차순 요청
+
+def category_it(request):
+    blogs = Blog.objects.all().filter(category='IT').order_by('-created_date')
+    return render(request, 'index.html', {'posts':blogs})
+
+    queryset = queryset.order_by('field1') # 지정 필드 오름차순 요청
+
+def category_science(request):
+    blogs = Blog.objects.all().filter(category='과학').order_by('-created_date')
+    return render(request, 'index.html', {'posts':blogs})
+
+    queryset = queryset.order_by('field1') # 지정 필드 오름차순 요청

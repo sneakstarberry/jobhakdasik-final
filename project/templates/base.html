@@ -1,115 +1,99 @@
+{% extends 'base-nav.html' %} {% load staticfiles %} {% block base %}
+<section class="section_padding_top_100 section_padding_bottom_100 height-100">
+    <div class='head-contents'>
+        <div class="container">
+            <div class='row'>
+                <!--회원 정보 시작-->
+                <div class="col-md-3">
+                    <div class='profile'>
+                        {% if user.is_authenticated %}
+                        <div class="img-circle" style="background-position:center; background-image: url({{user.profile.image.url}}); background-size: cover;" ></div> <br>
+                        {{user.username}} 님 <br>
+                        <a class="info" href="{% url 'login' %}">내 정보</a>
+                        <a class="info" href="{% url 'logout' %}">로그아웃</a>
+                        {% else %}
+                        <img src="{% static 'board/img/user.png'%}" alt="오류" class="img-circle"> <br>
+                        
+                        <img src="" alt="" class="img-circle"> <br>
+                        <br>
+                        <a class="info" href="{% url 'login' %}">로그인</a>
+                        <a class="info" href="{% url 'signup' %}">회원가입</a>
+                        {% endif %} 
+                    </div>
+                </div>
+                <!--회원 정보 종료-->
 
-{% comment %} {% providers_media_js %} {% endcomment %}
-{% load staticfiles %}
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <title>잡학다식</title>
-
-    <!-- Bootstrap, Jquery, popper css -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <!-- font css -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
-    
-    <script src="https://kit.fontawesome.com/51369bc7c3.js"></script>
-
-    <!-- jobhakdasik css -->
-
-    <link rel="stylesheet" href="{% static 'board/css/main.css' %}">
-
-
-  </head>
-
-
-  <body>
-      
-        
- <div class="body">
-    <header class='header_nav nanumsquare'>
-      <div class="container-fluid">
-        <div class="logo">
-          <a href="{% url 'home' %}">
-            <!-- <img src="images/logo.jpg" alt="잡학다식"> -->
-            <h3>잡학다식</h3>
-          </a>
-        </div>
-
-        <div class="header_mainmenu text-center">
-          <nav class="mainmenu_wrapper">
-            <ul class="mainmenu nav sf-menu">
-              <li class="active">
-                <a href="">회원</a>
-              </li>
-
-              <!--menu 1-->
-              <li >
-                <a href="">공지</a>
-              </li>
-
-              <!-- menu 2 -->
-              <li>
-                <a href="{% url 'post_home' %}">지식</a>
-              </li>
-
-              <!--menu 3-->
-              <li>
-                <a href="">토론</a>
-              </li>
-            
-            </ul>
-          </nav>
-          <!-- eof main nav -->
-          <!-- header toggler -->
-        </div>
-
-        <div class="text-right header_right_buttons">
-          <ul>
-            {% if user.is_authenticated %}
-            <li>
-              <a href="{% url 'logout' %}" class='logout'>로그아웃</a>
-            </li>
-            <li>
-              <a href="#" class='username'>{{user.username}}님</a>
-            </li>
-            {% else %}
-            <li>
-              <a href="{% url 'signup' %}" class='sign-up'>회원가입</a>
-            </li>
-            <li>
-              <a href="{% url 'login' %}" class='login'>로그인</a>
-            </li>
-            {% endif %}
-          </ul>
-        </div>
-
-      </div>
-    </header>
-      <!--네비 밑에 깔아서 겹치지 않도록 하는 역할-->
-      <div class="background-top"></div>
-
-
-
-		
-                  {% block contents %}
-
-                  {% endblock %}
-        <div class="container-footer">
-        <footer class="nanumsquare">
-            <div class="container-fluid container">
-              <div class="paddingtop-15">
-                <p class='footer-left'>© SAHMYOOK UNIVERSITY LIKELION 7TH 잡학다식</p>
-                <p class='footer-right'>FAMILYSITE <a href="http://sahmyook.likelion.org/">삼육멋사</a> <a href="https://likelion.net/">멋쟁이사자처럼</a></p>
-              </div>
+                <!--검색창 시작-->
+                <div class=" col-md-9">
+                    <div class="search-input">
+                        <input type="text" class="search" value="검색">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <!--검색창 종료-->
             </div>
-        </footer>
-      </div>
-</body>
-</html>
+            <!--row-->
+        </div>
+        <!--container-->
+    </div>
+    
+    <div class="bg-img">
+        <div class="container top-250">
+            <div class='row'>
+                <div class="col-md-3">
+                <div class="col-md-12">
+                    <a href="{% url 'home' %}" class='clickbox'>
+                        <img class="image1" src="{% static 'board/img/home.png'%}">
+                        <span class="menu_text">홈</span>
+                    </a>
+                </div>
+                <div class="col-md-12">
+                    <a href="{% url 'politics' %}" class='clickbox'>
+                        <img class="image" src="{% static 'board/img/politics.png'%}">
+                        <span class="menu_text"> 정치</span>
+                    </a>
+                </div>
+                <div class="col-md-12">
+                    <a href="{% url 'social' %}" class='clickbox'>
+                        <img class="image" src="{% static 'board/img/social.png'%}">
+                        <span class="menu_text">사회</span>
+                    </a>
+                </div>
+                <div class="col-md-12">
+                    <a href="{% url 'economy' %}" class='clickbox'>
+                        <img class="image" src="{% static 'board/img/economy.png'%}">
+                        <span class="menu_text">경제</span>
+                    </a>
+                </div>
+                <div class="col-md-12">
+                    <a href="{% url 'it' %}" class='clickbox'>
+                        <img class="image1" src="{% static 'board/img/it.png'%}">
+                        <span class="menu_text">IT</span>
+                    </a>
+                </div>
+                <div class="col-md-12">
+                    <a href="{% url 'science' %}" class='clickbox'>
+                        <img class="image" src="{% static 'board/img/science.png'%}">
+                        <span class="menu_text">과학</span>
+                    </a>
+                </div>
+                </div>
+                <!--콘텐츠 시작-->
+                <div class='col-md-9'>
+                    <div class="content-detail">
+                        <div class='content row'>
+                            <div class='row'>
+                                {% block contents %}
+
+                                {% endblock %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+        </div>
+    </div>
+    </div>
+</section>
+
+{% endblock %}

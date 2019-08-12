@@ -25,18 +25,22 @@ SECRET_KEY = 'zk1vjay=u52ek(0z95(#s_*f409elfop$9)f$97butsx@e#b+v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 
 INSTALLED_APPS = [
+
     'ckeditor',
     'ckeditor_uploader',
+
     'board',
     'debate',
     'log',
+    'mypage',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -138,3 +142,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MEDIA_URL = '/media/'
+

@@ -1,54 +1,133 @@
-{% extends 'base.html' %}  {% load staticfiles %}
+{% extends 'base.html' %} {% load staticfiles %} 
+ {% block head %}
+    <!-- jobhakdasik debate css -->
 
+    <link rel="stylesheet" href="{% static 'job_debate/css/content_detail.css' %}">
+{% endblock %}
+
+
+            <!--콘텐츠 시작-->
 {% block contents %}
+    <div class='col-md-12'>
+        <h2 class="content_title">{{ debate.title }}</h2>
+        <p class="content_date">{{ debate.pub_date }}</p>
 
-<div class="container">
-        <div class="card mt-5">
-            <div class="card-body">
-                <h1 class="card-title">제목: {{blog.title}}</h1>
-                <h6 class="card-subtitle mb-2 text-muted">{{blog.category}} ㅣ {{blog.author}} ㅣ {{blog.created_date}}</h6>
 
-                {% if blog.image %}
-                <img src="{{ blog.image.url }}" width= "500"; >
-                {% endif %}<hr>
-                <p class="card-text">본문: {{blog.body | safe}}</p>
-                <a class= 'btn btn-primary' href="{% url 'update' blog.id %}">수정</a>
-                <a class= 'btn btn-danger' href="{% url 'delete' blog.id %}" class="delete">삭제</a>
-                <a class= "btn btn-info" href="{% url 'home'%}" class="card-link">home</a>
-                <div class=float-right >
-                    {% if user.is_authenticated %}
-                  
-                    <a  href="{% url 'like' blog.id %}" class = "btn-like {% if user in blog.like.all %} active {% endif %}">좋아요</a>
-                    {% else %}
-                    <a href="{% url 'login' %}" class = "btn-like">좋아요</a>
-                    {% endif %}
-                        {{blog.like.count}}
-                </div>
+        <img class='debate_img' src="{{ debate.image.url }}">
+
+        <div class="content_body">
+            <h5 class="body_point"> KEYPOINT </h5>
+            <p class="body_text"> 
+                무엇이 더 저렴한가?<br>사람들이 좋아하는 맛은?<br>{{ debate.body }}
+            </p>
+        </div>
+
+            <a href="" class="content_rink">자세히 알아보기 ▶</a>
+
+        <div>
+            {% if user.is_authenticated %}
+                <a  href="{% url 'agree' debate.id%}" class = "btn-agree {% if user in debate.agree.all %} active {% endif %}">좋아요</a>
+            {% else %}
+                <a href="{% url 'login' %}" class = "btn-agree">찬성</a>
+            {% endif %}
+                {{debate.agree.count}}
+            <button></button>
+        </div>
+        <p>그래프구현필요</p>{{debate.agree.count}}
+    </div>
+
+
+    <!-- 의견쓰기 -->
+    <div class="write_op col-12">
+
+        <hr>
+        <div class='row'>
+            <div class="comment_profile col-3">
+                <img class='row'src="">
+                <p class='row'>{{user.username}}</p>
+            </div>
+
+            {% block content %}
+            <div class='col-9'>
+
+                    <div class='row check'>
+                            <form method="POST">
+                                    {% csrf_token %}
+                                    <p>
+                                        {{form.as_p}}
+                                    </p>
+                                    <br>
+                                        <input class="btn btn-dark" type="submit" value="제출하기">
+                                    </form>
+                        <button type="submit" class="write_button">의견제출</button>
+                        <input type="radio" name="chk_info" id="check_agree">
+                        <label for="check_agree"><p class="checkbox_text">찬성</p></label> 
+                        <input type="radio" name="chk_info" id="check_disagree">
+                        <label for="check_disagree"><p class="chechbox_text">반대</p>
+                    </div>
+                
             </div>
         </div>
+        <hr>
+
     </div>
 
+    <hr class="line">
+</div>
+        
+                   {% comment %} <div class="comment">
+                       <div class="comment_profile">
+                            <img src="">
+                            <p>username</p>
+                       </div>
+                         
+                        <p class="comment_text"> 이곳은 의견을 적는 곳 이곳은 의견을 적는 곳</p>
+                        <div>
+                            <a href="" class="small_button">반론하기</a>
+                            <a href="" class="small_button">좋아요</a>
+                            <a href="" class="small_button">싫어요</a></div>
+                        <!-- {% for comment in blog.comments.all %}
+                        <div class="comment">
+                                <div class="date">{{ comment.created_date }} {{ comment.author }}</div>
+                                <p>{{ comment.text|linebreaks }}</p>
+                            </div>
+                        {% empty %}
+                            <p>아직 댓글이 없습니다</p>
+                        {% endfor %} -->
+                   </div> {% endcomment %}
 
-<div class="container mt-5 mb-6">
-<div class='card mt-5'>
-    <div class="card-body">
-    <p>댓글 수 : {{blog.comments.count}}</p>
+                   <div class="comment2">
+                        <div class="comment_profile">
+                                {% comment %} <img src=""> {% endcomment %}
+                                <p>username</p>
+                           </div>
+                             
+                            <p class="comment_text"> 이곳은 의견을 적는 곳 이곳은 의견을 적는 곳</p>
+                            <div>
+                                <a href="" class="small_button">반론하기</a>
+                                <a href="" class="small_button">좋아요</a>
+                                <a href="" class="small_button">싫어요</a>
+                            </div>
 
-<hr>
-<a  class= 'btn btn-primary ml-3 mb-3' href="{% url 'add_comment' blog.id %}">댓글 달기</a>
-    {% for comment in blog.comments.all %}
-    <hr>
-    <div class="comment">
-        <div class="date">{{ comment.created_date }} {{ comment.author }}</div>
-        <p>{{ comment.text|linebreaks }}</p>
-        <a href="{% url 'edit_comment' comment.id %}">수정</a>
-        <a href="{% url 'del_comment' comment.id %}" class="delete">삭제</a>
-    </div>
-    {% empty %}
-    <p>아직 댓글이 없습니다</p>
-    {% endfor %}
-</div>
-</div>
-</div>
+                   </div>
+
+
+
+
+                    </div>
+
+         
+                </div>
+
+               
+
+
+            {% endblock %}
+
+
+                </div>
+            </div>
+        </div>  
+  
 
 {% endblock %}

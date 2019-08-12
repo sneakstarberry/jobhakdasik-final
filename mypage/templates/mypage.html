@@ -1,0 +1,61 @@
+{% extends 'base-nav.html' %}
+{% load staticfiles %}
+
+{% block head %}
+<!-- mypage_css -->
+<link rel="stylesheet" href="{% static 'job_mypage/css/base-style.css' %}">
+{% endblock %}
+
+{% block base %}
+
+
+
+<body>
+<div class="mypage">
+<br><br><br><br><br><br>
+{% if user.is_authenticated %}
+<img src="{{user.profile.image.url}}" alt="불러오기 실패" class="img-circle circle">
+<br><br>
+<p class="user_name">
+{{user.username}}님 
+</p>
+
+<!--{{user.email}} -->
+<a class="update btn-primary btn" href="{% url 'change' %}" role="button">개인정보 수정하기</a>
+<br>
+{% else %}
+<img src="{% static 'user.png' %}" alt="불러오기 실패" class="img-circle">
+<br><br>
+
+ <p class="user_name">  "로그인을 해주세요"</p>
+
+<br>
+{% endif %}
+
+<br>
+    <div class="mypage_content">
+        <div class="mypage_content1">
+        <a href="" class="cafe"> 내의견</a> 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="" class="cafe"> 좋아요</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="" class="cafe"> 북마크</a>
+        </div>
+    <br>
+        <div class="mypage_content2">
+                {% for post in liked_post %}
+                <a href="{% url 'detail' post.id %}">
+                    <li>{{post.title}}</li>
+                </a>
+                {% endfor %}
+            
+        </div>
+    <br><br>    
+
+</div>
+</body>
+</html>
+{% endblock %}
+
+
+

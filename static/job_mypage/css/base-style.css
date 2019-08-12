@@ -1,0 +1,56 @@
+
+
+.margintop-15{
+
+    margin-top: 15px;   
+
+}
+.cafe{
+    color: #6691e4;
+    font-weight: bold;
+    text-decoration: none;
+    
+}
+.cafe:link{
+    text-decoration: none;
+    color: #6691e4;
+}
+
+.cafe:hover{
+    text-decoration: underline;
+    color: #a98ec5;
+}
+.cafe:active{
+    text-decoration: underline;
+    color: #a98ec5;
+}
+.update{
+    background-color: #a98ec5 !important;
+    border-color: #a98ec5;
+    color: white;
+}
+.update:hover{
+    border-color: #a98ec5;
+}
+.user_name{
+    font-weight: 1200px;
+    font-size: 20px;
+    color: #9675c1;
+}
+.mypage_content{
+
+}
+.mypage_content1{
+    
+    
+}
+.mypage_content2{
+    width: 700px;
+    height: 230px;
+    border: 1px solid #6691e4;
+    border-radius:10px;
+    margin:auto;
+}
+.mypage{
+    text-align: center;
+}

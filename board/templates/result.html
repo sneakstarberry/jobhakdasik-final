@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 
-{% block content %}
+{% block contents %}
 <div class="result">
     <div class="container pt-5">
         <h1 class='mb-5'>"{{query}}"검색결과 ({{result.count}})</h1>
@@ -16,14 +16,20 @@
         
         {% for post in result %}
             <div class="col-md-12 mb-3">
-                <a href="{% url 'detail' blog.id %}" class="card-link">
+
+                
+ 
                 <div class="card">
                     <div class="card-body">
+              
+                        <a href="{% url 'detail' post.id %}" >
+
                         <h5 class="card-title">{{post.title}}</h5>
-                        <p class="card-text">작성자 : {{post.zwriter}} | {{post.pub_date}}</p>
+                        </a>
+                        <p class="card-text">작성자 : {{post.author}} | {{post.pub_date}}</p>
                     </div>
                 </div>
-                </a>    
+
             </div>
         {% endfor %}
     </div>

@@ -23,7 +23,7 @@
         .sign-up{
         width:360px;
         background:#f1f1f1;
-        height:500px;
+        height:550px;
         padding:80px 40px;
         border-radius:10px;
         position:absolute;
@@ -64,7 +64,7 @@
 
 
 <div class="sign-up">
-<form method="POST" action="{%url 'signup' %}" >
+<form method="POST" action="{%url 'signup' %}" enctype="multipart/form-data">
 {% csrf_token%}
 
 <h2>Signup</h2>
@@ -81,6 +81,11 @@
     <div class="txtb">
 
    <input type="password"  name="password2" placeholder="Confirm Password" >
+
+ </div>
+ <div class="txtb">
+
+   <input type="file" name="img1"/> 
 
  </div>
 <div class="btn-signup">

@@ -13,5 +13,11 @@ urlpatterns = [
     path('search', views.search, name="search"),
     path('post_home/', views.post_home, name="post_home"),
     path('like/<int:blog_id>', views.like, name="like"),
-    path('favorite/<int:blog_id>', views.favorite, name="favorite")
+    path('favorite/<int:blog_id>', views.favorite, name="favorite"),
+    path('category_notice', views.category_notice, name="notice"),
+    path('category_politics', views.category_politics, name="politics"),
+    path('category_social', views.category_social, name="social"),
+    path('category_economy', views.category_economy, name="economy"),
+    path('category_it', views.category_it, name="it"),
+    path('category_science', views.category_science, name="science"),
 ]

@@ -4,9 +4,12 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 Category_select = (
-    ('상식', '상식'),
-    ('철학', '철학'),
-    ('정치', '정치'),
+        ('공지', '공지'),
+        ('정치', '정치'),
+        ('사회', '사회'),
+        ('경제', '경제'),
+        ('IT','IT'),
+        ('과학','과학'),
 )
 
 class Blog(models.Model):
@@ -14,7 +17,7 @@ class Blog(models.Model):
     title = models.CharField(max_length=255, blank=True, null=True)
     image = models.ImageField(upload_to='img/')
     body = RichTextUploadingField(blank=True, null=True)
-    category = models.CharField(max_length=20, choices = Category_select, default = '상식')
+    category = models.CharField(max_length=20, choices = Category_select, default = '공지')
     created_date = models.DateTimeField(default=timezone.now)
     pub_date = models.DateTimeField(blank=True, null=True)
     like = models.ManyToManyField(User, related_name='like_post', blank=True)
