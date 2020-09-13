@@ -17,8 +17,8 @@ def home(request):
     #request된 페이지를 얻어온 뒤 return 해 준다.
     posts = paginator.get_page(page)
 
-    assets =  get_object_or_404(Profile , user=request.user)
-    return render(request, 'index.html', {'blogs':blogs, 'posts':posts, 'assets' : assets})
+    # assets =  get_object_or_404(Profile , user=request.user)
+    return render(request, 'index.html', {'blogs':blogs, 'posts':posts})
 
 # 홈페이지와는 다른 게시판 함수
 def post_home(request):
